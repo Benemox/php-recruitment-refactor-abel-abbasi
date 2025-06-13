@@ -1,9 +1,30 @@
-version: '3.8'
 services:
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    volumes:
+      - ./:/app
+    container_name: docplanner_php
+    working_dir: /app
+
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: docplanner_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/app
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+
   unit-testing-api:
     container_name: unit-testing-api
     build:
       context: ./
-      dockerfile: docker/Dockerfile
+      dockerfile: docker/unitTestingApi/Dockerfile
     ports:
-      - '2137:2137'
+      - "2137:2137"
+    working_dir: /app
+    volumes: []
