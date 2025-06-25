@@ -26,7 +26,7 @@
 ---
 
 ## 📁 Folder Structure
-
+```plaintext
 src/
 ├── Doctor/
 │ ├── Domain/
@@ -46,7 +46,7 @@ docker/
 ├── php/
 ├── nginx/
 ├── unitTestingApi/
-
+```
 
 ---
 
